@@ -1,5 +1,42 @@
 # week5
 
+## optional
+```sql
+create table message(
+    ->id bigint primary key auto_increment,
+    ->member_id bigint not null,
+    ->content varchar(255) not null,
+    ->like_count int unsigned not null default 0,
+    ->time datetime not null default current_timestamp,
+    ->foreign key(member_id) references member(id) on delete cascade
+);
+```
+<img width="592" alt="image" src="https://user-images.githubusercontent.com/110441965/198873633-99e6cde5-f75f-4bf8-8f36-5310e6901ed8.png">
+
+```sql
+select member.name,message.content from member
+inner join message
+on member.id=message.member_id;
+```
+<img width="386" alt="image" src="https://user-images.githubusercontent.com/110441965/198873506-114263a5-9330-49e4-8f49-711bb50efd92.png">
+
+```sql
+select member.name,message.content from member
+inner join message
+on member.id=message.member_id
+and username='test';
+```
+<img width="398" alt="image" src="https://user-images.githubusercontent.com/110441965/198873528-8d6fc5ef-46c9-4936-b9ea-655967dec6cf.png">
+
+```sql
+select avg(message.like_count) from member
+inner join message
+on member.id=message.member_id
+and username='test';
+```
+<img width="372" alt="image" src="https://user-images.githubusercontent.com/110441965/198873543-ac0180cf-1c5c-471a-9ab9-085c9d02dd9d.png">
+
+
 ## 要求三
 ``` sql
 insert into member (name,username,password)
